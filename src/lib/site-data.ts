@@ -60,7 +60,7 @@ export const WA_MESSAGES = {
   },
 };
 
-/* ---------------- Statistics (partner portfolio source + client-supplied figures) ---------------- */
+/* ---------------- Statistics (client-supplied figures) ---------------- */
 export interface StatItem {
   value: number;
   suffix?: string;
@@ -69,18 +69,9 @@ export interface StatItem {
   label: { ar: string; en: string };
   note: { ar: string; en: string };
   countUp: boolean;
-  /** text-based stat — renders the big line smaller so it stays on one line */
-  compact?: boolean;
 }
 
 export const STATS: StatItem[] = [
-  {
-    value: 150,
-    prefix: "+",
-    label: { ar: "متجر شريك", en: "Partner stores" },
-    note: { ar: "أدرنا وطوّرنا مبيعاتها", en: "whose growth we managed" },
-    countUp: true,
-  },
   {
     value: 1.5,
     prefix: "+",
@@ -91,24 +82,16 @@ export const STATS: StatItem[] = [
     countUp: true,
   },
   {
-    value: 720,
-    label: { ar: "عميل متعاقد", en: "contracted clients" },
-    note: { ar: "إجمالي العملاء المتعاقدين معنا", en: "total contracted clients" },
-    countUp: true,
-  },
-  {
     value: 2,
     label: { ar: "سنتين شراكة", en: "2-year partnerships" },
     note: { ar: "شراكات ممتدة ومستمرة", en: "extended ongoing partnerships" },
     countUp: false,
-    compact: true,
   },
   {
-    value: 0,
-    label: { ar: "المملكة والخليج", en: "KSA & GCC" },
-    note: { ar: "نطاق التغطية انطلاقاً من جدة", en: "coverage — based in Jeddah" },
-    countUp: false,
-    compact: true,
+    value: 720,
+    label: { ar: "عميل متعاقد", en: "contracted clients" },
+    note: { ar: "إجمالي العملاء المتعاقدين معنا", en: "total contracted clients" },
+    countUp: true,
   },
 ];
 
