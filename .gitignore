@@ -47,6 +47,7 @@ local-*
 *.log
 dev.log
 dev.out.log
+*.pid
 test
 prompt
 
