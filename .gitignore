@@ -60,5 +60,12 @@ server.log
 /tool-results/
 /db/
 /scripts/
+
+# sandbox runtime internals (not part of the site)
+/.zscripts/
+/tests/
+/examples/
+/mini-services/
+/Caddyfile
 # Skills directory
 /skills/
