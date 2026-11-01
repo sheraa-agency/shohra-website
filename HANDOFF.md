@@ -37,6 +37,16 @@ bun run build      # الناتج في مجلد out/
 
 > بدائل الاستضافة: Netlify / Cloudflare Pages — نفس الفكرة (الموقع ثابت جدًا وسريع على أي استضافة).
 
+### الرفع المباشر على استضافة عادية (cPanel / File Manager)
+لو استلمت ملف مضغوط فيه مجلد `site-ready-to-upload/` (النسخة المبنية الجاهزة):
+1. فك الضغط على جهازك.
+2. لوحة تحكم الاستضافة → **File Manager** → ادخل مجلد `public_html` (أو مجلد الدومين).
+3. امسح أي ملفات قديمة داخل `public_html` (خصوصًا index.html القديم).
+4. ارفع **محتويات** مجلد `site-ready-to-upload/` كلها داخل `public_html` مباشرة (index.html + assets + _next …).
+5. فعّل شهادة SSL المجانية (AutoSSL / Let's Encrypt) من لوحة التحكم — الموقع هيشتغل على https فورًا.
+
+> ⚠️ مهم جدًا: المحتويات تتحط في **جذر الدومين** (`public_html` نفسه) مش في مجلد جواه — غير كده الصور والملفات مش هتتفتح.
+
 ### ملاحظات مهمة
 - محتوى الموقع كله في: `src/components/site/` والنصوص في `src/lib/site-data.ts`
 - الألوان والتصميم في: `src/app/globals.css` + `tailwind.config.ts`
@@ -76,6 +86,16 @@ bun run build      # output goes to out/
 6. Wait for DNS propagation (minutes up to 24h) — the site goes live on the paid domain with automatic HTTPS.
 
 > Alternative hosts: Netlify / Cloudflare Pages — same idea (pure static, fast everywhere).
+
+### Direct upload to regular hosting (cPanel / File Manager)
+If you received a ZIP containing a `site-ready-to-upload/` folder (the pre-built site):
+1. Unzip it on your computer.
+2. Hosting control panel → **File Manager** → open `public_html` (or the domain's folder).
+3. Delete any old files inside `public_html` (especially an old index.html).
+4. Upload **the contents** of `site-ready-to-upload/` directly into `public_html` (index.html + assets + _next …).
+5. Enable the free SSL certificate (AutoSSL / Let's Encrypt) — the site goes live on https immediately.
+
+> ⚠️ Important: files go in the **domain root** (`public_html` itself), not a subfolder — otherwise images and assets won't load.
 
 ### Where things live
 - Site content: `src/components/site/` — texts: `src/lib/site-data.ts`
