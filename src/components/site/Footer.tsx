@@ -156,8 +156,8 @@ export default function Footer() {
                     {tx(CREDENTIALS.status)}
                   </span>
                 </div>
-                <p className="font-latin mt-2 text-[22px] font-bold tracking-[0.08em] text-[#7adfe8]" dir="ltr">
-                  {CREDENTIALS.crNumber}
+                <p className="font-latin mt-2 text-[22px] font-bold tracking-[0.08em] text-[#7adfe8]">
+                  <span dir="ltr">{CREDENTIALS.crNumber}</span>
                 </p>
                 <p className="mt-1.5 text-[12px] leading-6 text-[#8fa9b0]">{tx(CREDENTIALS.legalName)}</p>
                 <a
