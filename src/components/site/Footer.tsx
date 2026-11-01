@@ -1,14 +1,24 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { Phone, Mail, MessageCircle, MapPin, Globe, Instagram, ExternalLink, Clock, ShieldCheck, Fingerprint, BadgeCheck, FileText } from "lucide-react";
+import { Mail, MessageCircle, MapPin, Globe, Instagram, ExternalLink, Clock, ShieldCheck, FileText, Maximize2 } from "lucide-react";
 import { useLang } from "@/lib/lang";
 import { T, CONTACT, CREDENTIALS, SERVICES, waLink, WA_MESSAGES } from "@/lib/site-data";
+import Lightbox, { type LightboxItem } from "./Lightbox";
 
 export default function Footer() {
   const { tx, lang } = useLang();
   const year = 2026;
+  const [certIdx, setCertIdx] = useState<number | null>(null);
+
+  const certItem: LightboxItem = {
+    src: CREDENTIALS.crImage,
+    title: lang === "ar" ? "شهادة السجل التجاري — وزارة التجارة" : "Commercial Registration Certificate — Ministry of Commerce",
+    caption: tx(CREDENTIALS.legalName),
+    w: CREDENTIALS.crImageW,
+    h: CREDENTIALS.crImageH,
+  };
 
   return (
     <footer className="relative mt-auto border-t border-white/5 bg-[#040d12]/80 pb-8 pt-16 backdrop-blur-sm">
@@ -66,12 +76,6 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href={`tel:${CONTACT.phone.replace(/\s/g, "")}`} className="flex items-center gap-2.5 transition hover:text-white" dir="ltr">
-                  <Phone className="h-4 w-4 shrink-0 text-[#3fc9d4]" />
-                  <span className="font-latin">{CONTACT.phone}</span>
-                </a>
-              </li>
-              <li>
                 <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-2.5 transition hover:text-white" dir="ltr">
                   <Mail className="h-4 w-4 shrink-0 text-[#f08020]" />
                   <span className="font-latin">{CONTACT.email}</span>
@@ -126,7 +130,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* official credentials — verified CR + e-commerce authentication */}
+        {/* official credentials — verified CR with certificate preview */}
         <div className="mt-14">
           <div className="flex items-center gap-4">
             <span className="font-display inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-wider text-[#7adfe8]">
@@ -136,80 +140,60 @@ export default function Footer() {
             <span className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
           </div>
 
-          <div className="mt-5 grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
-            {/* CR number */}
-            <a
-              href={CREDENTIALS.crPdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass glow-card group relative overflow-hidden rounded-2xl p-5 transition"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#f08020]/25 to-[#f08020]/5 ring-1 ring-[#f08020]/30">
-                  <ShieldCheck className="h-5 w-5 text-[#f08020]" />
-                </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#25d366]/10 px-2.5 py-1 text-[10px] font-semibold text-[#25d366] ring-1 ring-[#25d366]/25">
-                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#25d366]" />
-                  {tx(CREDENTIALS.status)}
-                </span>
-              </div>
-              <p className="font-display mt-4 text-[13.5px] font-bold text-white">{tx(T.footer.crBadge)}</p>
-              <p className="mt-1 text-[11px] text-[#5d7680]">{tx(T.footer.crNumberLabel)}</p>
-              <p className="font-latin mt-1.5 text-[19px] font-bold tracking-[0.08em] text-[#7adfe8]" dir="ltr">
-                {CREDENTIALS.crNumber}
-              </p>
-              <span className="mt-3 inline-flex items-center gap-1.5 text-[11px] text-[#8fa9b0] transition group-hover:text-white">
-                <FileText className="h-3.5 w-3.5" />
-                {tx(T.footer.viewCertificate)}
-                <ExternalLink className="h-3 w-3 opacity-60" />
+          <div className="glass glow-card relative mt-5 overflow-hidden rounded-3xl p-6 sm:p-7">
+            <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+              {/* Ministry of Commerce logo */}
+              <span className="flex h-[56px] shrink-0 items-center rounded-2xl bg-white px-4 ring-1 ring-white/20">
+                <Image src={CREDENTIALS.mcLogo} alt="وزارة التجارة — Ministry of Commerce" width={132} height={57} className="h-10 w-auto" />
               </span>
-            </a>
 
-            {/* unified national number + legal name */}
-            <a
-              href={CREDENTIALS.crPdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass glow-card group relative overflow-hidden rounded-2xl p-5 transition"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#3fc9d4]/25 to-[#3fc9d4]/5 ring-1 ring-[#3fc9d4]/30">
-                  <Fingerprint className="h-5 w-5 text-[#3fc9d4]" />
-                </span>
+              {/* CR info */}
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                  <p className="font-display text-[15px] font-bold text-white">{tx(T.footer.crBadge)}</p>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#25d366]/10 px-2.5 py-1 text-[10px] font-semibold text-[#25d366] ring-1 ring-[#25d366]/25">
+                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#25d366]" />
+                    {tx(CREDENTIALS.status)}
+                  </span>
+                </div>
+                <p className="font-latin mt-2 text-[22px] font-bold tracking-[0.08em] text-[#7adfe8]" dir="ltr">
+                  {CREDENTIALS.crNumber}
+                </p>
+                <p className="mt-1.5 text-[12px] leading-6 text-[#8fa9b0]">{tx(CREDENTIALS.legalName)}</p>
+                <a
+                  href={CREDENTIALS.crPdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center gap-1.5 text-[11.5px] text-[#8fa9b0] transition hover:text-white"
+                >
+                  <FileText className="h-3.5 w-3.5" />
+                  {tx(T.footer.viewCertificate)} — PDF
+                  <ExternalLink className="h-3 w-3 opacity-60" />
+                </a>
               </div>
-              <p className="font-display mt-4 text-[13.5px] font-bold text-white">{tx(T.footer.unifiedLabel)}</p>
-              <p className="font-latin mt-1.5 text-[19px] font-bold tracking-[0.08em] text-[#7adfe8]" dir="ltr">
-                {CREDENTIALS.unifiedNumber}
-              </p>
-              <p className="mt-3 text-[11.5px] leading-6 text-[#8fa9b0]">
-                {tx(T.footer.legalNameLabel)}: <span className="text-white/85">{tx(CREDENTIALS.legalName)}</span>
-              </p>
-            </a>
 
-            {/* e-commerce authentication */}
-            <a
-              href={CREDENTIALS.ecomPdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass glow-card group relative overflow-hidden rounded-2xl p-5 transition"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#f08020]/25 to-[#f08020]/5 ring-1 ring-[#f08020]/30">
-                  <BadgeCheck className="h-5 w-5 text-[#f08020]" />
+              {/* certificate thumbnail — click to enlarge */}
+              <button
+                type="button"
+                onClick={() => setCertIdx(0)}
+                aria-label={tx(T.footer.viewCertificate)}
+                className="group relative shrink-0 self-center overflow-hidden rounded-xl ring-1 ring-white/15 transition hover:ring-[#f08020]/70 sm:self-auto"
+              >
+                <Image
+                  src={CREDENTIALS.crImage}
+                  alt={lang === "ar" ? "شهادة السجل التجاري" : "Commercial Registration certificate"}
+                  width={190}
+                  height={134}
+                  className="h-auto w-[190px] transition duration-500 group-hover:scale-[1.05]"
+                />
+                <span className="absolute inset-0 flex items-center justify-center bg-[#030a0e]/0 text-white opacity-0 transition duration-300 group-hover:bg-[#030a0e]/55 group-hover:opacity-100">
+                  <Maximize2 className="h-6 w-6 drop-shadow" />
                 </span>
-              </div>
-              <p className="font-display mt-4 text-[13.5px] font-bold text-white">{tx(T.footer.ecomBadge)}</p>
-              <p className="mt-1 text-[11.5px] text-[#8fa9b0]">{tx(T.footer.ecomBy)}</p>
-              <p className="mt-3 text-[11px] text-[#5d7680]">
-                {tx(T.footer.crNumberLabel)}: <span className="font-latin text-white/85" dir="ltr">{CREDENTIALS.crNumber}</span>
-              </p>
-              <span className="mt-3 inline-flex items-center gap-1.5 text-[11px] text-[#8fa9b0] transition group-hover:text-white">
-                <FileText className="h-3.5 w-3.5" />
-                {tx(T.footer.viewCertificate)}
-                <ExternalLink className="h-3 w-3 opacity-60" />
-              </span>
-            </a>
+              </button>
+            </div>
           </div>
+
+          <Lightbox items={[certItem]} index={certIdx} onClose={() => setCertIdx(null)} onNavigate={setCertIdx} />
         </div>
 
         {/* bottom bar */}

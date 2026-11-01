@@ -12,7 +12,6 @@
 export const CONTACT = {
   whatsappNumber: "966554927428",
   whatsappDisplay: "+966 55 492 7428",
-  phone: "+966 11 510 1663",
   email: "info@shohrah.com",
   website: "https://www.shohrah.com",
   linktree: "https://linktr.ee/shohramarketing1",
@@ -22,23 +21,24 @@ export const CONTACT = {
 } as const;
 
 /* ------------------------------------------------------------------
-   Official credentials — verified from the agency's Linktree documents:
+   Official credentials — verified from the agency's official documents:
    - Ministry of Commerce CR certificate (شهادة السجل التجاري):
-     legal name "مؤسسة شهرة المستقبل للتسويق الرقمي", unified national
-     number 7034153762, issued 07/04/2023, entity type مؤسسة, status نشط.
-   - Saudi Business Center E-Commerce Authentication Certificate:
-     CR number 4030507737, authentication 0000007311.
-   Both PDFs are served verbatim from /assets/docs/.
+     legal name "مؤسسة شهرة المستقبل للتسويق الرقمي", issued 07/04/2023,
+     entity type مؤسسة, status نشط.
+   The PDF is served verbatim from /assets/docs/; the certificate image
+   and Ministry of Commerce logo are cropped verbatim from the official
+   certificate.
 ------------------------------------------------------------------- */
 export const CREDENTIALS = {
   legalName: { ar: "مؤسسة شهرة المستقبل للتسويق الرقمي", en: "Shohra Al-Mustaqbal Digital Marketing Est." },
   crNumber: "4030507737",
-  unifiedNumber: "7034153762",
-  ecomAuthNumber: "0000007311",
   issueDate: "07/04/2023",
   status: { ar: "نشط", en: "Active" },
   crPdf: "/assets/docs/cr-certificate.pdf",
-  ecomPdf: "/assets/docs/ecommerce-certificate.pdf",
+  crImage: "/assets/docs/cr-certificate.webp",
+  crImageW: 1117,
+  crImageH: 790,
+  mcLogo: "/assets/docs/mc-logo.png",
 } as const;
 
 export const waLink = (text: string) =>

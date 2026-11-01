@@ -81,8 +81,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  /* Verified from the Ministry of Commerce CR certificate & Saudi Business
-     Center e-commerce authentication (both served under /assets/docs/). */
+  /* Verified from the Ministry of Commerce CR certificate (served under /assets/docs/). */
   const orgJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -93,7 +92,6 @@ export default function RootLayout({
     address: { "@type": "PostalAddress", addressLocality: "Jeddah", addressCountry: "SA" },
     identifier: [
       { "@type": "PropertyValue", name: "Commercial Registration Number", value: "4030507737" },
-      { "@type": "PropertyValue", name: "Unified National Number", value: "7034153762" },
     ],
     sameAs: ["https://linktr.ee/shohramarketing1", "https://www.instagram.com/shohramarketing1/"],
   };
