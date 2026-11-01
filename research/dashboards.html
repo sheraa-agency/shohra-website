@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مؤسسة شُهرة التسويقية | لوحات وإثباتات المبيعات</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #d4af37;
+      --gold-light: #f7e7a9;
+      --gold-dark: #997b22;
+      --gold-gradient: linear-gradient(135deg, #f7e7a9 0%, #d4af37 50%, #997b22 100%);
+      --bg-dark: #0a0b0e;
+      --card-bg: #14161d;
+      --card-border: rgba(212, 175, 55, 0.18);
+      --text-main: #f0f2f5;
+      --text-muted: #9aa1b2;
+      --whatsapp: #25d366;
+    }
+    
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Cairo', 'Tajawal', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    #particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.35;
+    }
+
+    /* TOP NAVIGATION */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(10, 11, 14, 0.88);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .brand-logo-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(153, 123, 34, 0.35));
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+    }
+    .brand-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 0.5px;
+    }
+    .brand-city {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .nav-btn-portfolio {
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: var(--gold-light);
+    }
+    .nav-btn-portfolio:hover {
+      background: rgba(212, 175, 55, 0.25);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .nav-btn-feedbacks {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #e0e0e0;
+    }
+    .nav-btn-feedbacks:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+    .nav-btn-wa {
+      background: #25d366;
+      color: #072a12;
+      border: none;
+      font-weight: 800;
+    }
+    .nav-btn-wa:hover {
+      background: #1eb857;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 4.5rem 1.5rem 3.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(ellipse 70% 50% at 50% 10%, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: var(--gold-light);
+      padding: 0.45rem 1.3rem;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    .hero-title {
+      font-size: clamp(2rem, 5.5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 1.2rem;
+      max-width: 900px;
+    }
+    .hero-title .gold-text {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+    .hero-desc {
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 2.2rem;
+      line-height: 1.8;
+      font-weight: 400;
+    }
+    .hero-desc strong {
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    /* HIGHLIGHT PILLS */
+    .highlight-pills {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .pill {
+      background: rgba(20, 22, 29, 0.8);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      padding: 0.5rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      color: var(--gold-light);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      backdrop-filter: blur(6px);
+    }
+    .pill-icon { color: var(--gold); }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .cta-primary {
+      background: #25d366;
+      color: #072e14;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: 999px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.25s ease;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    }
+    .cta-primary:hover {
+      background: #1eb857;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(37, 211, 102, 0.45);
+    }
+    .cta-secondary {
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      color: var(--gold-light);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.6rem;
+      border-radius: 999px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.25s ease;
+    }
+    .cta-secondary:hover {
+      background: rgba(212, 175, 55, 0.22);
+      border-color: var(--gold);
+      transform: translateY(-3px);
+    }
+
+    .scroll-down {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      text-decoration: none;
+      margin-top: 1rem;
+      transition: color 0.2s;
+    }
+    .scroll-down:hover { color: var(--gold); }
+    .scroll-down .arrow {
+      width: 14px;
+      height: 14px;
+      border-right: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+      transform: rotate(45deg);
+      animation: bounce 1.8s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50% { transform: rotate(45deg) translateY(6px); }
+    }
+
+    /* SECTION HEADER */
+    .section-head {
+      text-align: center;
+      padding: 3rem 1.5rem 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .section-tag {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+    }
+    .section-title span {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* GALLERY GRID */
+    .gallery-container {
+      position: relative;
+      z-index: 1;
+      max-width: 1350px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 5rem;
+    }
+    .masonry-grid {
+      column-count: 2;
+      column-gap: 1.5rem;
+    }
+    @media (max-width: 800px) {
+      .masonry-grid { column-count: 1; }
+    }
+
+    .sale-card {
+      break-inside: avoid;
+      margin-bottom: 1.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+    }
+    .sale-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 45px rgba(212, 175, 55, 0.22), 0 0 0 1px rgba(212, 175, 55, 0.45);
+      border-color: rgba(212, 175, 55, 0.55);
+    }
+    .sale-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease;
+      background: #0d0f14;
+    }
+    .sale-card:hover img {
+      transform: scale(1.015);
+    }
+    .card-top-tag {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      background: rgba(10, 11, 14, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      color: var(--gold-light);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+    .card-top-tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #25d366;
+      box-shadow: 0 0 8px #25d366;
+    }
+    .card-zoom-hint {
+      position: absolute;
+      bottom: 0.85rem;
+      left: 0.85rem;
+      background: rgba(10, 11, 14, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.2s;
+    }
+    .sale-card:hover .card-zoom-hint {
+      color: var(--gold-light);
+      border-color: rgba(212, 175, 55, 0.4);
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 6, 8, 0.95);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      backdrop-filter: blur(14px);
+    }
+    .lightbox.active {
+      display: flex;
+      animation: fadeIn 0.25s ease both;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .lb-img {
+      max-width: 94vw;
+      max-height: 88vh;
+      border-radius: 14px;
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      box-shadow: 0 0 90px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 175, 55, 0.2);
+      object-fit: contain;
+      transition: opacity 0.25s ease;
+    }
+    .lb-btn {
+      position: fixed;
+      width: 48px;
+      height: 48px;
+      background: rgba(15, 17, 23, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: var(--gold-light);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+      z-index: 2010;
+    }
+    .lb-btn:hover {
+      background: rgba(212, 175, 55, 0.25);
+      border-color: var(--gold);
+      transform: scale(1.08);
+    }
+    .lb-close {
+      top: 1.25rem;
+      left: 1.25rem;
+      font-size: 1.2rem;
+    }
+    .lb-prev { left: 1.25rem; top: 50%; transform: translateY(-50%); }
+    .lb-next { right: 1.25rem; top: 50%; transform: translateY(-50%); }
+    .lb-counter {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 17, 23, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: var(--gold-light);
+      padding: 0.4rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* BOTTOM CTA BANNER */
+    .cta-banner {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 1rem auto 4rem;
+      padding: 3.5rem 2rem;
+      background: linear-gradient(135deg, rgba(20, 22, 29, 0.95), rgba(10, 11, 14, 0.95));
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 24px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+    .cta-banner h3 {
+      font-size: clamp(1.4rem, 3vw, 2.1rem);
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .cta-banner p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 650px;
+      margin: 0 auto 1.8rem;
+      line-height: 1.8;
+    }
+    .cta-banner-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: #07080a;
+      border-top: 1px solid rgba(212, 175, 55, 0.15);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    footer .footer-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    footer .footer-info {
+      margin-bottom: 0.3rem;
+    }
+
+    /* FLOATING WHATSAPP BUTTON */
+    .floating-wa-btn {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 999;
+      background: #25d366;
+      color: #072e14;
+      border-radius: 999px;
+      padding: 12px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.95rem;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.45);
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    .floating-wa-btn:hover {
+      background: #1eb857;
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 16px 40px rgba(37, 211, 102, 0.55);
+    }
+    .floating-wa-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 600px) {
+      .top-nav { padding: 0.75rem 1rem; }
+      .brand-name { font-size: 1rem; }
+      .nav-btn-portfolio { padding: 0.45rem 0.8rem; font-size: 0.78rem; }
+      .nav-btn-feedbacks { display: none; }
+      .nav-btn-wa { display: none; }
+      .hero { padding: 3rem 1rem 2.5rem; }
+      .hero-title { font-size: 1.9rem; }
+      .hero-desc { font-size: 0.95rem; }
+      .cta-primary, .cta-secondary { width: 100%; justify-content: center; }
+      .floating-wa-btn {
+        bottom: 18px;
+        left: 18px;
+        padding: 10px 18px;
+        font-size: 0.88rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+
+  <!-- TOP BAR -->
+  <header class="top-nav">
+    <a href="#" class="brand-wrap">
+      <div class="brand-logo-badge">👑</div>
+      <div>
+        <div class="brand-name">مؤسسة شُهرة التسويقية</div>
+        <div class="brand-city">جدة • نتائج ومبيعات معتمدة</div>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <a href="https://booming-feels-o49oc.ship.place/" target="_blank" class="nav-btn nav-btn-portfolio">
+        <span>معرض المتاجر</span>
+        <span>↗</span>
+      </a>
+      <a href="https://plaid-subway-otr91.ship.place/" target="_blank" class="nav-btn nav-btn-feedbacks">
+        <span>آراء العملاء</span>
+        <span>↗</span>
+      </a>
+      <a href="https://wa.me/966554927428?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%AA%D8%B3%D9%88%D9%8A%D9%82%D9%8A%D8%A9%20%D9%84%D9%85%D8%AA%D8%AC%D8%B1%D9%8A" target="_blank" class="nav-btn nav-btn-wa">
+        <span>واتساب</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span>📈</span>
+      <span>لوحات تحكم وإحصائيات موثقة • مؤسسة شُهرة</span>
+    </div>
+    <h1 class="hero-title">
+      نتائج وإثباتات <span class="gold-text">مبيعات المتاجر</span>
+    </h1>
+    <p class="hero-desc">
+      أرقام حقيقية ومبيعات مباشرة من لوحات تحكم عملائنا على منصات <strong>سلة، زد، وشوبيفاي</strong>. نساعد أكثر من <strong>150 متجر إلكتروني</strong> في تحقيق عوائد استثنائية ونمو مستدام في المبيعات والطلبات.
+    </p>
+
+    <!-- HIGHLIGHT PILLS -->
+    <div class="highlight-pills">
+      <div class="pill"><span class="pill-icon">✦</span> عوائد استثمارية قياسية (ROAS)</div>
+      <div class="pill"><span class="pill-icon">✦</span> إدارة حملات على تيك توك، سناب، وجوجل</div>
+      <div class="pill"><span class="pill-icon">✦</span> خدمة أكثر من 150 متجر إلكتروني</div>
+    </div>
+
+    <div class="hero-cta-group">
+      <a href="https://wa.me/966554927428?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B6%D8%A7%D8%B9%D9%81%D8%A9%20%D9%85%D8%A8%D9%8A%D8%B9%D8%A7%D8%AA%20%D9%85%D8%AA%D8%AC%D8%B1%D9%8A%20%D9%85%D8%B9%20%D9%85%D8%A4%D8%B3%D8%B3%D8%A9%20%D8%B4%D9%87%D8%B1%D8%A9" target="_blank" class="cta-primary">
+        <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+        <span>ابدأ الآن - تواصل واتساب</span>
+      </a>
+      <a href="https://booming-feels-o49oc.ship.place/" target="_blank" class="cta-secondary">
+        <span>استعرض نماذج المتاجر والشركاء</span>
+        <span>↗</span>
+      </a>
+    </div>
+    <a href="#sales-gallery" class="scroll-down">
+      <span>تصفح لوحات المبيعات</span>
+      <div class="arrow"></div>
+    </a>
+  </section>
+
+  <!-- SECTION HEADER -->
+  <div class="section-head" id="sales-gallery">
+    <div class="section-tag">✦ الشفافية تصنع الثقة ✦</div>
+    <h2 class="section-title">تقارير وأرقام <span>المبيعات الفعلية</span></h2>
+    <p class="section-sub">اضغط على أي تقرير لتكبيره بالكامل وقراءة تفاصيل الأداء، عدد الطلبات، ونمو الزيارات</p>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gallery-container">
+    <div class="masonry-grid" id="sales-grid">
+      <div class="sale-card" onclick="openLB(0)">
+        <div class="card-top-tag">تقرير مبيعات موثق</div>
+        <img src="imgs/sale_1.jpg" alt="تقرير مبيعات" loading="lazy" />
+        <div class="card-zoom-hint"><span>🔍 اضغط للتكبير</span></div>
+      </div>
+      <div class="sale-card" onclick="openLB(1)">
+        <div class="card-top-tag">تقرير مبيعات موثق</div>
+        <img src="imgs/sale_2.jpg" alt="تقرير مبيعات" loading="lazy" />
+        <div class="card-zoom-hint"><span>🔍 اضغط للتكبير</span></div>
+      </div>
+      <div class="sale-card" onclick="openLB(2)">
+        <div class="card-top-tag">تقرير مبيعات موثق</div>
+        <img src="imgs/sale_3.jpg" alt="تقرير مبيعات" loading="lazy" />
+        <div class="card-zoom-hint"><span>🔍 اضغط للتكبير</span></div>
+      </div>
+      <div class="sale-card" onclick="openLB(3)">
+        <div class="card-top-tag">تقرير مبيعات موثق</div>
+        <img src="imgs/sale_4.jpg" alt="تقرير مبيعات" loading="lazy" />
+        <div class="card-zoom-hint"><span>🔍 اضغط للتكبير</span></div>
+      </div>
+      <div class="sale-card" onclick="openLB(4)">
+        <div class="card-top-tag">تقرير مبيعات موثق</div>
+        <img src="imgs/sale_5.jpg" alt="تقرير مبيعات" loading="lazy" />
+        <div class="card-zoom-hint"><span>🔍 اضغط للتكبير</span></div>
+      </div>
+      <div class="sale-card" onclick="openLB(5)">
+        <div class="card-top-tag">تقرير مبيعات موثق</div>
+        <img src="imgs/sale_6.jpg" alt="تقرير مبيعات" loading="lazy" />
+        <div class="card-zoom-hint"><span>🔍 اضغط للتكبير</span></div>
+      </div>
+      <div class="sale-card" onclick="openLB(6)">
+        <div class="card-top-tag">تقرير مبيعات موثق</div>
+        <img src="imgs/sale_7.jpg" alt="تقرير مبيعات" loading="lazy" />
+        <div class="card-zoom-hint"><span>🔍 اضغط للتكبير</span></div>
+      </div>
+      <div class="sale-card" onclick="openLB(7)">
+        <div class="card-top-tag">تقرير مبيعات موثق</div>
+        <img src="imgs/sale_8.jpg" alt="تقرير مبيعات" loading="lazy" />
+        <div class="card-zoom-hint"><span>🔍 اضغط للتكبير</span></div>
+      </div>
+      <div class="sale-card" onclick="openLB(8)">
+        <div class="card-top-tag">تقرير مبيعات موثق</div>
+        <img src="imgs/sale_9.jpg" alt="تقرير مبيعات" loading="lazy" />
+        <div class="card-zoom-hint"><span>🔍 اضغط للتكبير</span></div>
+      </div>
+      <div class="sale-card" onclick="openLB(9)">
+        <div class="card-top-tag">تقرير مبيعات موثق</div>
+        <img src="imgs/sale_10.jpg" alt="تقرير مبيعات" loading="lazy" />
+        <div class="card-zoom-hint"><span>🔍 اضغط للتكبير</span></div>
+      </div>
+      <div class="sale-card" onclick="openLB(10)">
+        <div class="card-top-tag">تقرير مبيعات موثق</div>
+        <img src="imgs/sale_11.jpg" alt="تقرير مبيعات" loading="lazy" />
+        <div class="card-zoom-hint"><span>🔍 اضغط للتكبير</span></div>
+      </div>
+      <div class="sale-card" onclick="openLB(11)">
+        <div class="card-top-tag">تقرير مبيعات موثق</div>
+        <img src="imgs/sale_12.jpg" alt="تقرير مبيعات" loading="lazy" />
+        <div class="card-zoom-hint"><span>🔍 اضغط للتكبير</span></div>
+      </div>
+      <div class="sale-card" onclick="openLB(12)">
+        <div class="card-top-tag">تقرير مبيعات موثق</div>
+        <img src="imgs/sale_13.jpg" alt="تقرير مبيعات" loading="lazy" />
+        <div class="card-zoom-hint"><span>🔍 اضغط للتكبير</span></div>
+      </div>
+      <div class="sale-card" onclick="openLB(13)">
+        <div class="card-top-tag">تقرير مبيعات موثق</div>
+        <img src="imgs/sale_14.jpg" alt="تقرير مبيعات" loading="lazy" />
+        <div class="card-zoom-hint"><span>🔍 اضغط للتكبير</span></div>
+      </div>
+      <div class="sale-card" onclick="openLB(14)">
+        <div class="card-top-tag">تحليل أداء ومبيعات شامل</div>
+        <img src="imgs/sale_15.jpg" alt="لوحة تحكم تفصيلية" loading="lazy" />
+        <div class="card-zoom-hint"><span>🔍 اضغط للتكبير</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox" id="lightbox">
+    <button class="lb-btn lb-close" onclick="closeLB()" aria-label="إغلاق">✕</button>
+    <button class="lb-btn lb-prev" onclick="navLB(-1)" aria-label="السابق">‹</button>
+    <img class="lb-img" id="lb-img" src="" alt="معاينة التقرير" />
+    <button class="lb-btn lb-next" onclick="navLB(1)" aria-label="التالي">›</button>
+    <div class="lb-counter" id="lb-counter">1 / 15</div>
+  </div>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <h3>هل تبحث عن مضاعفة مبيعات متجرك وتحقيق أرقام مماثلة؟</h3>
+    <p>
+      مع مؤسسة شُهرة التسويقية، نضع بين يديك خبرة متكاملة في إدارة الحملات الإعلانية، تصميم العروض المميزة، وتحسين معدل التحويل لنحقق لمتجرك أعلى عائد على الاستثمار.
+    </p>
+    <div class="cta-banner-buttons">
+      <a href="https://wa.me/966554927428?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%AE%D8%B7%D8%A9%20%D8%AA%D8%B3%D9%88%D9%8A%D9%82%D9%8A%D8%A9%20%D9%84%D9%85%D8%AA%D8%AC%D8%B1%D9%8A" target="_blank" class="cta-primary">
+        <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+        <span>تواصل معنا عبر واتساب</span>
+      </a>
+      <a href="https://booming-feels-o49oc.ship.place/" target="_blank" class="cta-secondary">
+        <span>شاهد سابقة الأعمال والمتاجر</span>
+        <span>↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-title">مؤسسة شُهرة التسويقية</div>
+    <div class="footer-info">جدة، المملكة العربية السعودية • شركاء نجاح لأكثر من 150 متجر إلكتروني</div>
+    <div class="footer-info">هاتف / واتساب: +966 55 492 7428</div>
+    <div style="margin-top: 1rem; opacity: 0.6; font-size: 0.78rem;">جميع الحقوق محفوظة © 2026</div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/966554927428?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%AA%D8%B3%D9%88%D9%8A%D9%82%D9%8A%D8%A9%20%D9%84%D9%85%D8%AA%D8%AC%D8%B1%D9%8A" target="_blank" class="floating-wa-btn" aria-label="تواصل واتساب">
+    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+    <span>تواصل واتساب</span>
+  </a>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Particle background
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let W, H, pts = [];
+    function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+    function Pt() {
+      this.x = Math.random() * W;
+      this.y = Math.random() * H;
+      this.r = Math.random() * 1.5 + 0.3;
+      this.vx = (Math.random() - 0.5) * 0.3;
+      this.vy = (Math.random() - 0.5) * 0.3;
+      this.a = Math.random() * 0.5 + 0.2;
+    }
+    for (let i = 0; i < 90; i++) pts.push(new Pt());
+    (function draw() {
+      ctx.clearRect(0, 0, W, H);
+      pts.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(212, 175, 55, ${p.a})`;
+        ctx.fill();
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = W;
+        if (p.x > W) p.x = 0;
+        if (p.y < 0) p.y = H;
+        if (p.y > H) p.y = 0;
+      });
+      requestAnimationFrame(draw);
+    })();
+
+    // Lightbox Logic
+    const imgs = Array.from(document.querySelectorAll('#sales-grid .sale-card img'));
+    let curIndex = 0;
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbCounter = document.getElementById('lb-counter');
+
+    function openLB(i) {
+      curIndex = i;
+      updateLB();
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLB() {
+      lb.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function navLB(d) {
+      curIndex = (curIndex + d + imgs.length) % imgs.length;
+      updateLB();
+    }
+
+    function updateLB() {
+      lbImg.style.opacity = '0';
+      lbImg.src = imgs[curIndex].src;
+      lbImg.onload = () => { lbImg.style.opacity = '1'; };
+      lbCounter.textContent = (curIndex + 1) + ' / ' + imgs.length;
+    }
+
+    lb.addEventListener('click', e => {
+      if (e.target === lb) closeLB();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('active')) return;
+      if (e.key === 'ArrowLeft') navLB(-1);
+      if (e.key === 'ArrowRight') navLB(1);
+      if (e.key === 'Escape') closeLB();
+    });
+  </script>
+</body>
+</html>

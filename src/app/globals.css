@@ -1,0 +1,282 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-arabic-body);
+  --font-display: var(--font-arabic-display);
+  --font-latin: var(--font-latin-display);
+  --color-ring: var(--ring);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-teal-glow: var(--teal-glow);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-ember: var(--brand-ember);
+  --color-brand-teal: var(--brand-teal);
+  --color-brand-deep: var(--brand-deep);
+  --color-ink: var(--ink);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/*
+  SHOHRA brand system — extracted from official materials
+  Base teal   #104050 / #123f4a / #0f363f   (logo + official site)
+  Accent      #f08020 / #e85f22             (logo "MARKETING AGENCY" + official site buttons)
+  Luminous teal #3fc9d4 derived for dark-UI glows (same hue family, raised luminance)
+*/
+:root {
+  --radius: 0.75rem;
+
+  --background: #06121a;
+  --foreground: #e9f2f4;
+  --card: rgba(255, 255, 255, 0.035);
+  --card-foreground: #e9f2f4;
+  --popover: #0a1c26;
+  --popover-foreground: #e9f2f4;
+  --primary: #f08020;
+  --primary-foreground: #12100c;
+  --secondary: rgba(63, 201, 212, 0.12);
+  --secondary-foreground: #bfe9ee;
+  --muted: rgba(255, 255, 255, 0.06);
+  --muted-foreground: #8fa9b0;
+  --accent: #3fc9d4;
+  --accent-foreground: #04141a;
+  --border: rgba(255, 255, 255, 0.08);
+  --ring: rgba(240, 128, 32, 0.55);
+
+  --brand-orange: #f08020;
+  --brand-ember: #e85f22;
+  --brand-teal: #123f4a;
+  --brand-deep: #0f363f;
+  --teal-glow: #3fc9d4;
+  --ink: #06121a;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-plex-arabic), "IBM Plex Sans Arabic", "Alexandria", system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(240, 128, 32, 0.35);
+  color: #fff;
+}
+
+/* ---------- Typography helpers ---------- */
+.font-display {
+  font-family: var(--font-alexandria), "Alexandria", var(--font-plex-arabic), sans-serif;
+}
+.font-latin {
+  font-family: var(--font-sora), "Sora", var(--font-alexandria), sans-serif;
+}
+[dir="ltr"] .font-display,
+[dir="ltr"] body {
+  font-family: var(--font-sora), "Sora", var(--font-alexandria), sans-serif;
+}
+
+.text-gradient-teal {
+  background: linear-gradient(120deg, #d9f6f8 0%, #3fc9d4 45%, #7adfe8 70%, #f08020 115%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.text-gradient-orange {
+  background: linear-gradient(120deg, #ffb469 0%, #f08020 55%, #e85f22 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- Glass surfaces ---------- */
+.glass {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.glass-strong {
+  background: linear-gradient(160deg, rgba(13, 42, 52, 0.82), rgba(7, 24, 32, 0.88));
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.hairline {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* glowing border on hover */
+.glow-card {
+  position: relative;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+.glow-card:hover {
+  border-color: rgba(63, 201, 212, 0.45);
+  box-shadow:
+    0 0 0 1px rgba(63, 201, 212, 0.12),
+    0 18px 50px -18px rgba(18, 63, 74, 0.9),
+    0 0 42px -8px rgba(63, 201, 212, 0.22);
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #071820;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #154b58, #0f363f);
+  border-radius: 8px;
+  border: 2px solid #071820;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1d6474;
+}
+
+/* ---------- Custom cursor ---------- */
+@media (hover: hover) and (pointer: fine) {
+  .cursor-enabled,
+  .cursor-enabled a,
+  .cursor-enabled button,
+  .cursor-enabled [role="button"] {
+    cursor: none !important;
+  }
+}
+
+/* ---------- Section rhythm ---------- */
+section {
+  scroll-margin-top: 96px;
+}
+
+.section-kicker {
+  letter-spacing: 0.28em;
+}
+
+/* ---------- Noise & vignette overlays ---------- */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* ---------- Marquee ---------- */
+@keyframes marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50%);
+  }
+}
+.animate-marquee {
+  animation: marquee-rtl 42s linear infinite;
+}
+
+/* ---------- Soft pulse for WhatsApp ---------- */
+@keyframes wa-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+.wa-pulse {
+  animation: wa-pulse 2.6s ease-out infinite;
+}
+
+/* ---------- Float animation for hero chips ---------- */
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--rot, 0deg));
+  }
+  50% {
+    transform: translateY(-14px) rotate(var(--rot, 0deg));
+  }
+}
+.animate-floaty {
+  animation: floaty 7s ease-in-out infinite;
+}
+
+/* ---------- Scroll indicator ---------- */
+@keyframes scroll-dot {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+.animate-scroll-dot {
+  animation: scroll-dot 1.8s ease-in-out infinite;
+}
+
+/* ---------- Shimmer line ---------- */
+@keyframes shimmer-x {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+.shimmer-line {
+  background: linear-gradient(90deg, transparent, rgba(63, 201, 212, 0.6), rgba(240, 128, 32, 0.5), transparent);
+  background-size: 200% 100%;
+  animation: shimmer-x 6s linear infinite;
+}
+
+/* prefers-reduced-motion: kill decorative animation */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee,
+  .animate-floaty,
+  .animate-scroll-dot,
+  .shimmer-line,
+  .wa-pulse {
+    animation: none !important;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
