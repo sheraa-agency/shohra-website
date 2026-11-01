@@ -52,5 +52,12 @@ test
 prompt
 
 server.log
+
+# local working materials (not part of the site)
+/download/
+/upload/
+/research/
+/tool-results/
+/db/
 # Skills directory
 /skills/
