@@ -21,6 +21,26 @@ export const CONTACT = {
   hours: { ar: "السبت – الخميس · 9 صباحاً – 6 مساءً", en: "Sat – Thu · 9 AM – 6 PM" },
 } as const;
 
+/* ------------------------------------------------------------------
+   Official credentials — verified from the agency's Linktree documents:
+   - Ministry of Commerce CR certificate (شهادة السجل التجاري):
+     legal name "مؤسسة شهرة المستقبل للتسويق الرقمي", unified national
+     number 7034153762, issued 07/04/2023, entity type مؤسسة, status نشط.
+   - Saudi Business Center E-Commerce Authentication Certificate:
+     CR number 4030507737, authentication 0000007311.
+   Both PDFs are served verbatim from /assets/docs/.
+------------------------------------------------------------------- */
+export const CREDENTIALS = {
+  legalName: { ar: "مؤسسة شهرة المستقبل للتسويق الرقمي", en: "Shohra Al-Mustaqbal Digital Marketing Est." },
+  crNumber: "4030507737",
+  unifiedNumber: "7034153762",
+  ecomAuthNumber: "0000007311",
+  issueDate: "07/04/2023",
+  status: { ar: "نشط", en: "Active" },
+  crPdf: "/assets/docs/cr-certificate.pdf",
+  ecomPdf: "/assets/docs/ecommerce-certificate.pdf",
+} as const;
+
 export const waLink = (text: string) =>
   `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(text)}`;
 
@@ -407,13 +427,25 @@ export const DASHBOARDS = Array.from({ length: 15 }, (_, i) => {
   };
 });
 
-/* ---------------- Client reviews (26 genuine WhatsApp screenshots) ---------------- */
+/* ---------------- Client reviews (26 genuine WhatsApp screenshots) ----------------
+   w/h are the real pixel dimensions of each webp so next/image renders
+   every screenshot uncropped at its natural aspect ratio. */
+export const REVIEW_DIMS: [number, number][] = [
+  [1080, 252], [774, 245], [949, 300], [1080, 342], [1080, 606], [1080, 377],
+  [1004, 240], [1280, 720], [1280, 724], [1080, 323], [1078, 341], [1080, 400],
+  [1080, 1080], [1080, 519], [1080, 416], [1080, 240], [1080, 300], [1080, 606],
+  [667, 151], [922, 310], [1193, 334], [1109, 229], [560, 177], [784, 138],
+  [1080, 721], [1080, 747],
+];
 export const REVIEWS = Array.from({ length: 26 }, (_, i) => {
   const n = String(i + 1).padStart(2, "0");
+  const [w, h] = REVIEW_DIMS[i];
   return {
     id: `fb-${n}`,
     src: `/assets/reviews/fb-${n}.webp`,
-    alt: { ar: `رأي عميل حقيقي ${i + 1}`, en: `Real client review ${i + 1}` },
+    w,
+    h,
+    alt: { ar: `رأي عميل حقيقي ${i + 1} — لقطة واتساب أصلية`, en: `Real client review ${i + 1} — original WhatsApp screenshot` },
   };
 });
 
@@ -549,6 +581,17 @@ export const T = {
     },
     prev: { ar: "السابق", en: "Previous" },
     next: { ar: "التالي", en: "Next" },
+    chipCount: { ar: "+26 رأي عميل موثق", en: "+26 verified client reviews" },
+    chipOriginal: { ar: "لقطات واتساب أصلية — بدون أي تعديل", en: "Original WhatsApp screenshots — untouched" },
+    chipWritten: { ar: "شهادات مكتوبة من شركاء فعليين", en: "Written testimonials from real partners" },
+    wallTitle: { ar: "سجلّ الآراء الكامل", en: "The full reviews wall" },
+    wallSub: { ar: "اضغط على أي لقطة لعرضها بالحجم الكامل وتنقّل بينها", en: "Click any screenshot to view it full-size and browse through" },
+    viewFull: { ar: "عرض بالحجم الكامل", en: "View full size" },
+    sourceNote: {
+      ar: "المصدر: محادثات واتساب حقيقية مع عملاء شُهرة — تُعرض كما وصلت دون تعديل.",
+      en: "Source: real WhatsApp conversations with SHOHRA clients — shown exactly as received, unedited.",
+    },
+    caption: { ar: "رأي عميل حقيقي — محفوظ بنصه الأصلي كما وصلنا عبر واتساب.", en: "A real client review — preserved verbatim as received via WhatsApp." },
   },
   process: {
     kicker: { ar: "منهجية العمل", en: "Our Process" },
@@ -609,6 +652,15 @@ export const T = {
     officialSite: { ar: "الموقع الرسمي", en: "Official website" },
     rights: { ar: "جميع الحقوق محفوظة", en: "All rights reserved" },
     builtWith: { ar: "صُنع بشغف في جدة", en: "Crafted with passion in Jeddah" },
+    credentialsTitle: { ar: "الوثائق الرسمية", en: "Official credentials" },
+    crBadge: { ar: "سجل تجاري موثق", en: "Verified commercial registration" },
+    crNumberLabel: { ar: "رقم السجل التجاري", en: "CR number" },
+    unifiedLabel: { ar: "الرقم الوطني الموحد", en: "Unified national number" },
+    ecomBadge: { ar: "توثيق التجارة الإلكترونية", en: "E-commerce authentication" },
+    ecomBy: { ar: "المركز السعودي للأعمال", en: "Saudi Business Center" },
+    viewCertificate: { ar: "عرض الشهادة الرسمية", en: "View official certificate" },
+    statusLabel: { ar: "الحالة", en: "Status" },
+    legalNameLabel: { ar: "الاسم النظامي", en: "Legal name" },
     sources: { ar: "توثيق: سجل تجاري موثق وشهادة توثيق التجارة الإلكترونية متاحة عبر لينكتري.", en: "Credentials: commercial registration & e-commerce certification available via Linktree." },
   },
   lang: { switch: { ar: "EN", en: "عربي" } },

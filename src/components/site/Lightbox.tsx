@@ -11,6 +11,9 @@ export interface LightboxItem {
   src: string;
   title?: string;
   caption?: string;
+  /** natural pixel dims — when given, the frame hugs the image's aspect ratio */
+  w?: number;
+  h?: number;
 }
 
 export default function Lightbox({
@@ -95,20 +98,32 @@ export default function Lightbox({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="relative max-h-[76vh] w-full max-w-5xl"
+            className="relative w-full max-w-5xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="glass-strong overflow-hidden rounded-2xl p-2 sm:p-3">
-              <div className="relative h-[52vh] w-full sm:h-[64vh]">
+            <div className="glass-strong mx-auto max-w-full overflow-hidden rounded-2xl p-2 sm:p-3">
+              {item.w && item.h ? (
                 <Image
                   src={item.src}
                   alt={item.title || "SHOHRA"}
-                  fill
-                  className="object-contain"
+                  width={item.w}
+                  height={item.h}
+                  className="mx-auto h-auto max-h-[60vh] w-auto max-w-full object-contain"
                   sizes="(max-width: 1024px) 100vw, 1024px"
                   priority
                 />
-              </div>
+              ) : (
+                <div className="relative h-[52vh] w-full sm:h-[64vh]">
+                  <Image
+                    src={item.src}
+                    alt={item.title || "SHOHRA"}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 1024px) 100vw, 1024px"
+                    priority
+                  />
+                </div>
+              )}
               {(item.title || item.caption) && (
                 <div className="px-3 pb-2 pt-3 text-center">
                   {item.title && <p className="font-display text-sm font-semibold text-white">{item.title}</p>}

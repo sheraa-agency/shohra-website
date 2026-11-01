@@ -1,0 +1,621 @@
+     1→     1→/* ------------------------------------------------------------------
+     2→     2→   SHOHRA Marketing Agency — verified content layer
+     3→     3→   Every fact below was extracted from the client's official sources:
+     4→     4→   - shohrah.com (official website)
+     5→     5→   - linktr.ee/shohramarketing1
+     6→     6→   - booming-feels-o49oc.ship.place (partner stores portfolio)
+     7→     7→   - upbeat-decade-j5di9.ship.place (sales dashboards)
+     8→     8→   - plaid-subway-otr91.ship.place + Google Sites feedbacks (reviews)
+     9→     9→   Nothing here is invented. Sources are marked per item.
+    10→    10→------------------------------------------------------------------- */
+    11→    11→
+    12→    12→export const CONTACT = {
+    13→    13→  whatsappNumber: "966554927428",
+    14→    14→  whatsappDisplay: "+966 55 492 7428",
+    15→    15→  phone: "+966 11 510 1663",
+    16→    16→  email: "info@shohrah.com",
+    17→    17→  website: "https://www.shohrah.com",
+    18→    18→  linktree: "https://linktr.ee/shohramarketing1",
+    19→    19→  maps: "https://maps.app.goo.gl/9LCFvdVdtqspzmQJ8",
+    20→    20→  city: { ar: "جدة، المملكة العربية السعودية", en: "Jeddah, Saudi Arabia" },
+    21→    21→  hours: { ar: "السبت – الخميس · 9 صباحاً – 6 مساءً", en: "Sat – Thu · 9 AM – 6 PM" },
+    22→    22→} as const;
+    23→    23→
+    24→    24→export const waLink = (text: string) =>
+    25→    25→  `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(text)}`;
+    26→    26→
+    27→    27→/* Pre-filled WhatsApp messages — same ones used on the client's live pages */
+    28→    28→export const WA_MESSAGES = {
+    29→    29→  consult: {
+    30→    30→    ar: "السلام عليكم، أرغب في استشارة تسويقية لمتجري",
+    31→    31→    en: "Hello, I would like a free marketing consultation for my store",
+    32→    32→  },
+    33→    33→  growth: {
+    34→    34→    ar: "السلام عليكم، أرغب في مضاعفة مبيعات متجري مع مؤسسة شهرة",
+    35→    35→    en: "Hello, I want to multiply my store's sales with SHOHRA",
+    36→    36→  },
+    37→    37→  portfolio: {
+    38→    38→    ar: "السلام عليكم، تواصلت معكم بعد الاطلاع على معرض أعمال مؤسسة شهرة التسويقية، وأرغب في خدماتكم لمتجري",
+    39→    39→    en: "Hello, I contacted you after viewing SHOHRA's portfolio and I'm interested in your services for my store",
+    40→    40→  },
+    41→    41→};
+    42→    42→
+    43→    43→/* ---------------- Verified statistics (partner portfolio source) ---------------- */
+    44→    44→export interface StatItem {
+    45→    45→  value: number;
+    46→    46→  suffix?: string;
+    47→    47→  prefix?: string;
+    48→    48→  decimals?: number;
+    49→    49→  label: { ar: string; en: string };
+    50→    50→  note: { ar: string; en: string };
+    51→    51→  countUp: boolean;
+    52→    52→}
+    53→    53→
+    54→    54→export const STATS: StatItem[] = [
+    55→    55→  {
+    56→    56→    value: 150,
+    57→    57→    prefix: "+",
+    58→    58→    label: { ar: "متجر شريك", en: "Partner stores" },
+    59→    59→    note: { ar: "أدرنا وطوّرنا مبيعاتها", en: "whose growth we managed" },
+    60→    60→    countUp: true,
+    61→    61→  },
+    62→    62→  {
+    63→    63→    value: 1.5,
+    64→    64→    prefix: "+",
+    65→    65→    suffix: "M",
+    66→    66→    decimals: 1,
+    67→    67→    label: { ar: "متابع", en: "Followers" },
+    68→    68→    note: { ar: "عبر شبكات شركائنا", en: "across our partners' networks" },
+    69→    69→    countUp: true,
+    70→    70→  },
+    71→    71→  {
+    72→    72→    value: 2,
+    73→    73→    prefix: "1–",
+    74→    74→    label: { ar: "سنة شراكة", en: "years partnership" },
+    75→    75→    note: { ar: "شراكات ممتدة ومستمرة", en: "extended ongoing partnerships" },
+    76→    76→    countUp: false,
+    77→    77→  },
+    78→    78→  {
+    79→    79→    value: 0,
+    80→    80→    label: { ar: "المملكة والخليج", en: "KSA & GCC" },
+    81→    81→    note: { ar: "نطاق التغطية انطلاقاً من جدة", en: "coverage — based in Jeddah" },
+    82→    82→    countUp: false,
+    83→    83→  },
+    84→    84→];
+    85→    85→
+    86→    86→/* ---------------- Services (official website) ---------------- */
+    87→    87→export interface Service {
+    88→    88→  id: string;
+    89→    89→  icon: string;
+    90→    90→  title: { ar: string; en: string };
+    91→    91→  desc: { ar: string; en: string };
+    92→    92→}
+    93→    93→
+    94→    94→export const SERVICES: Service[] = [
+    95→    95→  {
+    96→    96→    id: "seo",
+    97→    97→    icon: "Search",
+    98→    98→    title: { ar: "تحسين محركات البحث", en: "SEO & Search Visibility" },
+    99→    99→    desc: {
+   100→   100→      ar: "نرفع ظهور متجرك في نتائج بحث جوجل ليصل عملاؤك إليك أولًا — تحليل كلمات، تحسين تقني، ومحتوى يقود نموًا عضويًا مستدامًا.",
+   101→   101→      en: "We raise your store's visibility on Google so customers find you first — keyword analysis, technical optimization and content that drives sustainable organic growth.",
+   102→   102→    },
+   103→   103→  },
+   104→   104→  {
+   105→   105→    id: "ads",
+   106→   106→    icon: "Target",
+   107→   107→    title: { ar: "إدارة الحملات الإعلانية", en: "Performance Marketing" },
+   108→   108→    desc: {
+   109→   109→      ar: "حملات ممولة مبنية على البيانات عبر تيك توك وسناب شات وجوجل، مع تحسين مستمر للميزانية لتحقيق أعلى عائد استثمار ممكن.",
+   110→   110→      en: "Data-driven paid campaigns across TikTok, Snapchat and Google with continuous budget optimization for the highest possible return.",
+   111→   111→    },
+   112→   112→  },
+   113→   113→  {
+   114→   114→    id: "store",
+   115→   115→    icon: "ShoppingBag",
+   116→   116→    title: { ar: "إنشاء وتطوير المتاجر", en: "E-commerce Development" },
+   117→   117→    desc: {
+   118→   118→      ar: "تصميم وبناء متاجر احترافية على سلة وزد بواجهات سريعة وسهلة، مُهيّأة للتحويل ومن صقل تجربة الشراء حتى آخر تفصيلة.",
+   119→   119→      en: "Designing and building professional stores on Salla and Zid — fast, conversion-ready interfaces refined down to the last checkout detail.",
+   120→   120→    },
+   121→   121→  },
+   122→   122→  {
+   123→   123→    id: "uiux",
+   124→   124→    icon: "PenTool",
+   125→   125→    title: { ar: "تصميم واجهات وتجربة المستخدم", en: "UI/UX Design" },
+   126→   126→    desc: {
+   127→   127→      ar: "واجهات عصرية أنيقة مبنية على فهم سلوك العميل السعودي، تحوّل الزيارة إلى تجربة شراء سلسة لا تُنسى.",
+   128→   128→      en: "Modern, elegant interfaces built on a deep understanding of Saudi customer behavior — turning visits into seamless, memorable purchase journeys.",
+   129→   129→    },
+   130→   130→  },
+   131→   131→  {
+   132→   132→    id: "social",
+   133→   133→    icon: "Share2",
+   134→   134→    title: { ar: "إدارة التواصل الاجتماعي", en: "Social Media Management" },
+   135→   135→    desc: {
+   136→   136→      ar: "إدارة كاملة لحساباتك: هوية بصرية متسقة، محتوى إبداعي، وخطة نشر تحوّل المتابعين إلى عملاء أوفياء.",
+   137→   137→      en: "Full account management: consistent visual identity, creative content and a publishing plan that turns followers into loyal customers.",
+   138→   138→    },
+   139→   139→  },
+   140→   140→  {
+   141→   141→    id: "brand",
+   142→   142→    icon: "Gem",
+   143→   143→    title: { ar: "التصميم الإبداعي والهوية البصرية", en: "Creative Design & Branding" },
+   144→   144→    desc: {
+   145→   145→      ar: "من الشعار إلى دليل الهوية الكامل، نبني علامة تجارية مميزة تعكس طموحك وتثبت في ذاكرة السوق السعودي.",
+   146→   146→      en: "From logo to full brand guidelines, we build a distinctive brand that reflects your ambition and stays in the Saudi market's memory.",
+   147→   147→    },
+   148→   148→  },
+   149→   149→];
+   150→   150→
+   151→   151→/* ---------------- Partner stores (verified portfolio source) ---------------- */
+   152→   152→export type CategoryId =
+   153→   153→  | "gold"
+   154→   154→  | "food"
+   155→   155→  | "fashion"
+   156→   156→  | "coffee"
+   157→   157→  | "fitness"
+   158→   158→  | "gifts";
+   159→   159→
+   160→   160→export const CATEGORIES: { id: CategoryId | "all"; label: { ar: string; en: string } }[] = [
+   161→   161→  { id: "all", label: { ar: "جميع النماذج", en: "All projects" } },
+   162→   162→  { id: "gold", label: { ar: "الذهب والمجوهرات", en: "Gold & Jewelry" } },
+   163→   163→  { id: "food", label: { ar: "الأغذية والصحة", en: "Food & Health" } },
+   164→   164→  { id: "fashion", label: { ar: "الأزياء والملابس", en: "Fashion & Apparel" } },
+   165→   165→  { id: "coffee", label: { ar: "القهوة والبهارات", en: "Coffee & Spices" } },
+   166→   166→  { id: "fitness", label: { ar: "الرياضة واللياقة", en: "Sports & Fitness" } },
+   167→   167→  { id: "gifts", label: { ar: "الهدايا والمنتجات المتخصصة", en: "Gifts & Specialty" } },
+   168→   168→];
+   169→   169→
+   170→   170→export interface Store {
+   171→   171→  id: string;
+   172→   172→  name: { ar: string; en: string };
+   173→   173→  latin: string;
+   174→   174→  category: Exclude<CategoryId, "all">;
+   175→   175→  tagline: { ar: string; en: string };
+   176→   176→  desc: { ar: string; en: string };
+   177→   177→  image: string;
+   178→   178→  link: string;
+   179→   179→  platform: { ar: string; en: string };
+   180→   180→  verified?: boolean;
+   181→   181→  badges: { ar: string; en: string }[];
+   182→   182→  services: { ar: string; en: string }[];
+   183→   183→  metrics: { label: { ar: string; en: string }; value: string }[];
+   184→   184→  testimonial?: { ar: string; en: string };
+   185→   185→}
+   186→   186→
+   187→   187→export const STORES: Store[] = [
+   188→   188→  {
+   189→   189→    id: "taiba",
+   190→   190→    name: { ar: "طيبة للذهب والمجوهرات", en: "Taiba Gold & Jewelry" },
+   191→   191→    latin: "TAIBA",
+   192→   192→    category: "gold",
+   193→   193→    tagline: { ar: "ذٌقَي الذهب والرِّفاهية", en: "The taste of gold & luxury" },
+   194→   194→    desc: {
+   195→   195→      ar: "أكبر مصنع ومصمم للذهب والمجوهرات بالشرق الأوسط، بعِراقبة تمتد منذ عام 1989.",
+   196→   196→      en: "The largest gold & jewelry manufacturer and designer in the Middle East, with heritage dating back to 1989.",
+   197→   197→    },
+   198→   198→    image: "/assets/stores/taiba.webp",
+   199→   199→    link: "https://taiba.com/",
+   200→   200→    platform: { ar: "منصة سلة", en: "Salla platform" },
+   201→   201→    verified: true,
+   202→   202→    badges: [
+   203→   203→      { ar: "إرث منذ 1989", en: "Heritage since 1989" },
+   204→   204→      { ar: "تغطية إقليمية ودولية", en: "Regional & international reach" },
+   205→   205→    ],
+   206→   206→    services: [
+   207→   207→      { ar: "تصميم واجهة متجر VIP", en: "VIP storefront design" },
+   208→   208→      { ar: "جلسات تصوير سينمائية", en: "Cinematic photoshoots" },
+   209→   209→      { ar: "حملات إعلانية فاخرة", en: "Premium ad campaigns" },
+   210→   210→    ],
+   211→   211→    metrics: [
+   212→   212→      { label: { ar: "المتابعون", en: "Followers" }, value: "+68.1K" },
+   213→   213→      { label: { ar: "العراقة", en: "Heritage" }, value: "1989" },
+   214→   214→      { label: { ar: "التغطية", en: "Reach" }, value: "Regional +" },
+   215→   215→    ],
+   216→   216→  },
+   217→   217→  {
+   218→   218→    id: "zaadana",
+   219→   219→    name: { ar: "متجر زادنا", en: "Zaadana Store" },
+   220→   220→    latin: "ZAADANA",
+   221→   221→    category: "food",
+   222→   222→    tagline: { ar: "كيتو وعضوي 100%", en: "100% keto & organic" },
+   223→   223→    desc: {
+   224→   224→      ar: "منتجات غذائية عضوية وصحية، كيتو وخالية من الجلوتين، مع شحن إقليمي يصل إلى 6 دول.",
+   225→   225→      en: "Organic health foods — keto and gluten-free — with regional shipping to 6 countries.",
+   226→   226→    },
+   227→   227→    image: "/assets/stores/zaadana.webp",
+   228→   228→    link: "https://zaadana.com/ar",
+   229→   229→    platform: { ar: "منصة سلة", en: "Salla platform" },
+   230→   230→    verified: true,
+   231→   231→    badges: [
+   232→   232→      { ar: "شحن إقليمي 6 دول", en: "Shipping to 6 countries" },
+   233→   233→      { ar: "محتوى +2,900 منشور", en: "+2,900 posts" },
+   234→   234→    ],
+   235→   235→    services: [
+   236→   236→      { ar: "واجهة أورجانيك عصرية", en: "Modern organic storefront" },
+   237→   237→      { ar: "عروض شحن مجاني", en: "Free-shipping offers" },
+   238→   238→      { ar: "حملات التوسع بالخليج", en: "GCC expansion campaigns" },
+   239→   239→    ],
+   240→   240→    metrics: [
+   241→   241→      { label: { ar: "المتابعون", en: "Followers" }, value: "+33.5K" },
+   242→   242→      { label: { ar: "الشحن", en: "Shipping" }, value: "6 دول" },
+   243→   243→      { label: { ar: "المنشورات", en: "Posts" }, value: "+2,900" },
+   244→   244→    ],
+   245→   245→  },
+   246→   246→  {
+   247→   247→    id: "chocolate",
+   248→   248→    name: { ar: "شوكلت تولز", en: "Chocolate Tools" },
+   249→   249→    latin: "CHOCOLATE TOOLS",
+   250→   250→    category: "food",
+   251→   251→    tagline: { ar: "أدوات وقوالب الشوكولاتة", en: "Chocolate tools & molds" },
+   252→   252→    desc: {
+   253→   253→      ar: "ملتقى أدوات وقوالب الشوكولاتة الأكريليك ودورات التدريب — مجتمع يضم أكثر من 24 ألف شيف.",
+   254→   254→      en: "The hub for acrylic chocolate tools & molds and training courses — a community of +24K chefs.",
+   255→   255→    },
+   256→   256→    image: "/assets/stores/chocolate.webp",
+   257→   257→    link: "https://chocolate-tools1.com/ar/",
+   258→   258→    platform: { ar: "منصة سلة", en: "Salla platform" },
+   259→   259→    badges: [
+   260→   260→      { ar: "مجتمع +24K شيف", en: "+24K chef community" },
+   261→   261→      { ar: "B2B & أفراد", en: "B2B & consumers" },
+   262→   262→    ],
+   263→   263→    services: [
+   264→   264→      { ar: "تصميم واجهة بلون الشوكولاتة", en: "Chocolate-toned storefront design" },
+   265→   265→      { ar: "تسويق الدورات المعتمدة", en: "Certified courses marketing" },
+   266→   266→      { ar: "طباعة الشعارات الخاصة", en: "Custom logo printing" },
+   267→   267→    ],
+   268→   268→    metrics: [
+   269→   269→      { label: { ar: "المتابعون", en: "Followers" }, value: "+24.4K" },
+   270→   270→      { label: { ar: "المنشورات", en: "Posts" }, value: "+1,190" },
+   271→   271→      { label: { ar: "الجمهور", en: "Audience" }, value: "B2B & C" },
+   272→   272→    ],
+   273→   273→  },
+   274→   274→  {
+   275→   275→    id: "barakat",
+   276→   276→    name: { ar: "مطاحن ومحامص البركات", en: "Al-Baarakat Mills & Roastery" },
+   277→   277→    latin: "ALBAARAKAT",
+   278→   278→    category: "coffee",
+   279→   279→    tagline: { ar: "قهوة سعودية ملكية وبهارات طازجة", en: "Royal Saudi coffee & fresh spices" },
+   280→   280→    desc: {
+   281→   281→      ar: "بهارات طازجة، قهوة سعودية ملكية، وتمور فاخرة — خبرة تمتد لأكثر من 25 عامًا منذ 1999.",
+   282→   282→      en: "Fresh spices, royal Saudi coffee and premium dates — over 25 years of expertise since 1999.",
+   283→   283→    },
+   284→   284→    image: "/assets/stores/barakat.webp",
+   285→   285→    link: "https://albaarakat.com/en",
+   286→   286→    platform: { ar: "منصة سلة", en: "Salla platform" },
+   287→   287→    badges: [
+   288→   288→      { ar: "تأسيس 1999", en: "Founded 1999" },
+   289→   289→      { ar: "شحن لدول الخليج", en: "GCC shipping" },
+   290→   290→    ],
+   291→   291→    services: [
+   292→   292→      { ar: "عروض المواسم والمناسبات", en: "Seasonal campaigns" },
+   293→   293→      { ar: "حملات اليوم الوطني", en: "National Day campaigns" },
+   294→   294→      { ar: "هوية بصرية تراثية", en: "Heritage visual identity" },
+   295→   295→    ],
+   296→   296→    metrics: [
+   297→   297→      { label: { ar: "الخبرة", en: "Experience" }, value: "+25 عام" },
+   298→   298→      { label: { ar: "الشحن", en: "Shipping" }, value: "الخليج" },
+   299→   299→    ],
+   300→   300→    testimonial: {
+   301→   301→      ar: "الله يبشرك بالجنة.. وأدعي لكم بالرحمة على الشغل الجميل",
+   302→   302→      en: "May God bless you.. I pray for you mercy for the beautiful work",
+   303→   303→    },
+   304→   304→  },
+   305→   305→  {
+   306→   306→    id: "hoodihead",
+   307→   307→    name: { ar: "هودي هيد", en: "Hoodihead" },
+   308→   308→    latin: "HOODIHEAD",
+   309→   309→    category: "fitness",
+   310→   310→    tagline: { ar: "مناشف جيم مبتكرة", en: "Innovative gym towels" },
+   311→   311→    desc: {
+   312→   312→      ar: "براند رياضي لمناشف الجيم بالهودي وحماية سماعات الرأس — امتصاص يعادل 10 أضعاف القطن.",
+   313→   313→      en: "A sports brand for gym towels with hood & headphone protection — 10X cotton absorption.",
+   314→   314→    },
+   315→   315→    image: "/assets/stores/hoodihead.webp",
+   316→   316→    link: "https://hoodihead.com/ar",
+   317→   317→    platform: { ar: "منصة سلة", en: "Salla platform" },
+   318→   318→    badges: [
+   319→   319→      { ar: "ابتكار بتسجيل هودي", en: "Patented hood design" },
+   320→   320→      { ar: "امتصاص 10X قطن", en: "10X cotton absorption" },
+   321→   321→    ],
+   322→   322→    services: [
+   323→   323→      { ar: "باقات الجيم وبكجات التوفير", en: "Gym bundles & saving packs" },
+   324→   324→      { ar: "استهداف نوادي اللياقة", en: "Fitness clubs targeting" },
+   325→   325→      { ar: "هوية رياضية جريئة", en: "Bold sports identity" },
+   326→   326→    ],
+   327→   327→    metrics: [
+   328→   328→      { label: { ar: "الابتكار", en: "Innovation" }, value: "Hooded towel" },
+   329→   329→      { label: { ar: "الاستهداف", en: "Targeting" }, value: "Gyms" },
+   330→   330→    ],
+   331→   331→    testimonial: {
+   332→   332→      ar: "عاجز عن شكري لما تقدمه.. دائماً تدخل في تفاصيل التفاصيل",
+   333→   333→      en: "I can't thank you enough for what you deliver.. you always dive into the finest details",
+   334→   334→    },
+   335→   335→  },
+   336→   336→  {
+   337→   337→    id: "baloma",
+   338→   338→    name: { ar: "بالوما", en: "BALOMA" },
+   339→   339→    latin: "BALOMA",
+   340→   340→    category: "fashion",
+   341→   341→    tagline: { ar: "أول علامة شاملة للقبعات", en: "The first all-inclusive caps brand" },
+   342→   342→    desc: {
+   343→   343→      ar: "أول براند سعودي شامل ومتخصص في القبعات والستريت وير، بهوية شبكية إبداعية متجددة.",
+   344→   344→      en: "The first comprehensive Saudi brand specialized in caps & streetwear, with a constantly renewed creative feed.",
+   345→   345→    },
+   346→   346→    image: "/assets/stores/baloma.webp",
+   347→   347→    link: "https://baloma.sa/",
+   348→   348→    platform: { ar: "منصة زد (Zid)", en: "Zid platform" },
+   349→   349→    badges: [
+   350→   350→      { ar: "هوية Streetwear", en: "Streetwear identity" },
+   351→   351→      { ar: "تجديد تلقائي مستمر", en: "Continuous auto-renewal" },
+   352→   352→    ],
+   353→   353→    services: [
+   354→   354→      { ar: "بناء هوية ستريت وير", en: "Streetwear identity building" },
+   355→   355→      { ar: "شبكة بصرية إبداعية", en: "Creative visual feed" },
+   356→   356→      { ar: "إدارة اشتراك التجديد", en: "Renewal subscription management" },
+   357→   357→    ],
+   358→   358→    metrics: [
+   359→   359→      { label: { ar: "التخصص", en: "Specialty" }, value: "Caps" },
+   360→   360→      { label: { ar: "المنصة", en: "Platform" }, value: "Zid" },
+   361→   361→    ],
+   362→   362→    testimonial: {
+   363→   363→      ar: "من حبي لكم صرت أحسب الأيام وقبل الموعد أجدد تلقائي",
+   364→   364→      en: "I love you so much that I count the days and renew automatically before the deadline",
+   365→   365→    },
+   366→   366→  },
+   367→   367→  {
+   368→   368→    id: "unique",
+   369→   369→    name: { ar: "الأشياء الفريدة", en: "The Unique Things" },
+   370→   370→    latin: "THE UNIQUE THINGS",
+   371→   371→    category: "gifts",
+   372→   372→    tagline: { ar: "شراشف صلاة وهدايا فريدة", en: "Unique prayer sheets & gifts" },
+   373→   373→    desc: {
+   374→   374→      ar: "جلالات وشراشف صلاة فريدة، سجادات، وعطور وبخور — مع حملات مؤثرين وتطبيقات على ذا شيفز.",
+   375→   375→      en: "Unique prayer sheets and rugs, perfumes and incense — with influencer campaigns and The Chefs app presence.",
+   376→   376→    },
+   377→   377→    image: "/assets/stores/unique.webp",
+   378→   378→    link: "https://theuniquethingsstore.com/",
+   379→   379→    platform: { ar: "سلة & ذا شيفز", en: "Salla & The Chefs" },
+   380→   380→    badges: [
+   381→   381→      { ar: "حملات مؤثرين", en: "Influencer campaigns" },
+   382→   382→      { ar: "شراكة ممتدة", en: "Extended partnership" },
+   383→   383→    ],
+   384→   384→    services: [
+   385→   385→      { ar: "إدارة حملات المؤثرين", en: "Influencer campaign management" },
+   386→   386→      { ar: "تصميم واجهة المتجر", en: "Storefront design" },
+   387→   387→      { ar: "محتوى هدايا موسمي", en: "Seasonal gifts content" },
+   388→   388→    ],
+   389→   389→    metrics: [
+   390→   390→      { label: { ar: "المتابعون", en: "Followers" }, value: "4,900" },
+   391→   391→      { label: { ar: "التطبيقات", en: "Apps" }, value: "The Chefs" },
+   392→   392→    ],
+   393→   393→    testimonial: {
+   394→   394→      ar: "ما يحتاج عقود خلاص الراحة وصلت وشغلكم جداً ممتاز",
+   395→   395→      en: "No contracts needed — peace of mind has arrived, and your work is excellent",
+   396→   396→    },
+   397→   397→  },
+   398→   398→];
+   399→   399→
+   400→   400→/* ---------------- Sales dashboards (verified source: 15 real screenshots) ---------------- */
+   401→   401→export const DASHBOARDS = Array.from({ length: 15 }, (_, i) => {
+   402→   402→  const n = String(i + 1).padStart(2, "0");
+   403→   403→  return {
+   404→   404→    id: `sale-${n}`,
+   405→   405→    src: `/assets/dashboards/sale-${n}.webp`,
+   406→   406→    title: { ar: `تقرير مبيعات موثق ${i + 1}`, en: `Verified sales report ${i + 1}` },
+   407→   407→  };
+   408→   408→});
+   409→   409→
+   410→   410→/* ---------------- Client reviews (26 genuine WhatsApp screenshots) ---------------- */
+   411→   411→export const REVIEWS = Array.from({ length: 26 }, (_, i) => {
+   412→   412→  const n = String(i + 1).padStart(2, "0");
+   413→   413→  return {
+   414→   414→    id: `fb-${n}`,
+   415→   415→    src: `/assets/reviews/fb-${n}.webp`,
+   416→   416→    alt: { ar: `رأي عميل حقيقي ${i + 1}`, en: `Real client review ${i + 1}` },
+   417→   417→  };
+   418→   418→});
+   419→   419→
+   420→   420→/* Featured written quotes — verbatim from verified sources */
+   421→   421→export const FEATURED_QUOTES = [
+   422→   422→  {
+   423→   423→    quote: {
+   424→   424→      ar: "الله يبشرك بالجنة.. وأدعي لكم بالرحمة على الشغل الجميل",
+   425→   425→      en: "May God bless you.. I pray for you mercy for the beautiful work",
+   426→   426→    },
+   427→   427→    author: { ar: "مطاحن ومحامص البركات", en: "Al-Baarakat Mills & Roastery" },
+   428→   428→    source: { ar: "شهادة شريك معتمدة", en: "Verified partner testimonial" },
+   429→   429→  },
+   430→   430→  {
+   431→   431→    quote: {
+   432→   432→      ar: "عاجز عن شكري لما تقدمه.. دائماً تدخل في تفاصيل التفاصيل",
+   433→   433→      en: "I can't thank you enough for what you deliver.. you always dive into the finest details",
+   434→   434→    },
+   435→   435→    author: { ar: "هودي هيد", en: "Hoodihead" },
+   436→   436→    source: { ar: "شهادة شريك معتمدة", en: "Verified partner testimonial" },
+   437→   437→  },
+   438→   438→  {
+   439→   439→    quote: {
+   440→   440→      ar: "من حبي لكم صرت أحسب الأيام وقبل الموعد أجدد تلقائي",
+   441→   441→      en: "I love you so much that I count the days and renew automatically before the deadline",
+   442→   442→    },
+   443→   443→    author: { ar: "بالوما", en: "BALOMA" },
+   444→   444→    source: { ar: "شهادة شريك معتمدة", en: "Verified partner testimonial" },
+   445→   445→  },
+   446→   446→  {
+   447→   447→    quote: {
+   448→   448→      ar: "الموقع مرة جميل ومرتّب وسهل الاستخدام، والتعامل مع الشركة كان سهل ومريح، والانستقرام مرتّب جدًا.",
+   449→   449→      en: "The website is beautiful, organized and easy to use, dealing with the company was easy and comfortable, and the Instagram is very organized.",
+   450→   450→    },
+   451→   451→    author: { ar: "عميل من الموقع الرسمي", en: "Client via official website" },
+   452→   452→    source: { ar: "shohrah.com", en: "shohrah.com" },
+   453→   453→  },
+   454→   454→];
+   455→   455→
+   456→   456→/* ---------------- UI copy dictionary ---------------- */
+   457→   457→export const T = {
+   458→   458→  nav: {
+   459→   459→    home: { ar: "الرئيسية", en: "Home" },
+   460→   460→    about: { ar: "من نحن", en: "About" },
+   461→   461→    services: { ar: "خدماتنا", en: "Services" },
+   462→   462→    work: { ar: "أعمالنا", en: "Work" },
+   463→   463→    results: { ar: "النتائج", en: "Results" },
+   464→   464→    testimonials: { ar: "آراء العملاء", en: "Testimonials" },
+   465→   465→    contact: { ar: "تواصل معنا", en: "Contact" },
+   466→   466→    menu: { ar: "القائمة", en: "Menu" },
+   467→   467→    close: { ar: "إغلاق", en: "Close" },
+   468→   468→  },
+   469→   469→  hero: {
+   470→   470→    kicker: { ar: "وكالة نمو رقمي · جدة — المملكة والخليج", en: "Digital Growth Agency · Jeddah — KSA & GCC" },
+   471→   471→    h1a: { ar: "نصنع حضوراً رقمياً", en: "We craft a digital presence" },
+   472→   472→    h1b: { ar: "يليق بطموح علامتك التجارية.", en: "worthy of your brand's ambition." },
+   473→   473→    sub: {
+   474→   474→      ar: "من بناء الهوية الرقمية وتصميم المتاجر، إلى إدارة الحملات الإعلانية وتحسين محركات البحث، نمنح علامتك التجارية كل ما تحتاجه للنمو.",
+   475→   475→      en: "From digital identity and store design to paid campaigns and SEO — we give your brand everything it needs to grow.",
+   476→   476→    },
+   477→   477→    cta1: { ar: "اكتشف أعمالنا", en: "Explore our work" },
+   478→   478→    cta2: { ar: "احجز استشارتك المجانية", en: "Book your free consultation" },
+   479→   479→    scroll: { ar: "مرّر للأسفل", en: "Scroll down" },
+   480→   480→    trusted: { ar: "شركاء نمو لأكثر من 150 متجراً في المملكة والخليج", en: "Growth partners to +150 stores across KSA & the GCC" },
+   481→   481→  },
+   482→   482→  stats: {
+   483→   483→    kicker: { ar: "الثقة والأداء", en: "Trust & Performance" },
+   484→   484→    title: { ar: "أرقام تُبنى على شراكات حقيقية", en: "Numbers built on real partnerships" },
+   485→   485→    sub: {
+   486→   486→      ar: "مؤشرات موثقة من معرض شركائنا ومتاجرنا — شراكات ممتدة نقيس نتائجها معاً.",
+   487→   487→      en: "Verified indicators from our partner stores — extended partnerships with results we measure together.",
+   488→   488→    },
+   489→   489→  },
+   490→   490→  about: {
+   491→   491→    kicker: { ar: "من نحن", en: "About SHOHRA" },
+   492→   492→    title: { ar: "نحن لا ندير التسويق فقط، نحن نبني منظومة نمو متكاملة.", en: "We don't just run marketing — we build a complete growth system." },
+   493→   493→    p1: {
+   494→   494→      ar: "«شُهرة» مؤسسة تسويقية سعودية من جدة، نحوّل رؤيتك إلى واقعٍ رقمي مبدع تحت سقفٍ واحد. نبتكر حلولاً تسويقية ذكية، ونحوّل حضور علامتك التجارية الرقمي إلى تجربة متكاملة تقود للنمو.",
+   495→   495→      en: "SHOHRA is a Saudi marketing agency from Jeddah that turns your vision into creative digital reality under one roof. We craft smart marketing solutions and turn your brand's digital presence into an integrated experience that drives growth.",
+   496→   496→    },
+   497→   497→    p2: {
+   498→   498→      ar: "فريقٌ سعوديٌّ واحد يُدير تسويقك بالكامل — من قلب السوق السعودي، نواكب رؤية 2030، ونبني مع كل شريك علاقة طويلة الأمد تُقاس نتائجها بالأرقام.",
+   499→   499→      en: "One Saudi team manages your entire marketing — from the heart of the Saudi market, aligned with Vision 2030, building long-term partnerships whose results are measured in numbers.",
+   500→   500→    },
+   501→   501→    pillars: [
+   502→   502→      { title: { ar: "فريق واحد يكفيك", en: "One team is enough" }, desc: { ar: "كل ما يحتاجه تسويقك تحت سقفٍ واحد — بدون تشتت أو وسيط.", en: "Everything your marketing needs under one roof — no middlemen, no scatter." } },
+   503→   503→      { title: { ar: "سعوديون نفهم سوقك", en: "Saudis who know your market" }, desc: { ar: "فهم عميق لسلوك المستهلك السعودي والخليجي وثقافة الشراء.", en: "Deep understanding of Saudi & Gulf consumer behavior and buying culture." } },
+   504→   504→      { title: { ar: "نتائج نقدر نقيسها", en: "Results we can measure" }, desc: { ar: "قرارات مبنية على البيانات وتقارير دورية واضحة.", en: "Data-driven decisions with clear periodic reporting." } },
+   505→   505→      { title: { ar: "شراكات طويلة الأمد", en: "Long-term partnerships" }, desc: { ar: "شراكات ممتدة من سنة إلى سنتين مع شركاء نستمر معهم.", en: "One-to-two-year extended partnerships with continuing partners." } },
+   506→   506→    ],
+   507→   507→    align: { ar: "من قلب السوق السعودي، نواكب رؤية 2030", en: "From the heart of the Saudi market, aligned with Vision 2030" },
+   508→   508→  },
+   509→   509→  services: {
+   510→   510→    kicker: { ar: "خدماتنا", en: "Our Services" },
+   511→   511→    title: { ar: "كل ما يحتاجه نموك، تحت سقفٍ واحد", en: "Everything your growth needs, under one roof" },
+   512→   512→    sub: {
+   513→   513→      ar: "ست خدمات متكاملة يعمل عليها فريق واحد — لتتحرك علامتك باتجاه واحد: النمو.",
+   514→   514→      en: "Six integrated services delivered by one team — so your brand moves in one direction: growth.",
+   515→   515→    },
+   516→   516→  },
+   517→   517→  portfolio: {
+   518→   518→    kicker: { ar: "أعمالنا", en: "Our Work" },
+   519→   519→    title: { ar: "نماذج من متاجر شركائنا", en: "Selected partner stores" },
+   520→   520→    sub: {
+   521→   521→      ar: "عينة مختارة من شركاء النجاح المستمرين معنا بشراكات ممتدة — اضغط على أي متجر لاستعراض تفاصيله.",
+   522→   522→      en: "A selected sample of ongoing success partners with extended partnerships — click any store to view its details.",
+   523→   523→    },
+   524→   524→    visit: { ar: "زيارة المتجر الحي", en: "Visit live store" },
+   525→   525→    delivered: { ar: "الخدمات المنفذة", en: "Services delivered" },
+   526→   526→    testimonial: { ar: "شهادة الشريك", en: "Partner testimonial" },
+   527→   527→    platform: { ar: "المنصة", en: "Platform" },
+   528→   528→    verified: { ar: "موثق", en: "Verified" },
+   529→   529→    viewDetails: { ar: "استعراض التفاصيل", en: "View details" },
+   530→   530→    close: { ar: "إغلاق", en: "Close" },
+   531→   531→  },
+   532→   532→  results: {
+   533→   533→    kicker: { ar: "إثباتات المبيعات", en: "Sales Proof" },
+   534→   534→    title: { ar: "الأرقام تتحدث عن النتائج.", en: "The numbers speak for the results." },
+   535→   535→    sub: {
+   536→   536→      ar: "لقطات حقيقية من لوحات تحكم متاجر شركائنا تعرض أداء المبيعات والطلبات والزيارات — اضغط على أي تقرير لتكبيره.",
+   537→   537→      en: "Real screenshots from our partners' store dashboards showing sales, orders and traffic performance — click any report to enlarge.",
+   538→   538→    },
+   539→   539→    enlarge: { ar: "اضغط للتكبير", en: "Click to enlarge" },
+   540→   540→    caption: { ar: "تقرير مبيعات موثق من لوحة تحكم متجر شريك", en: "Verified sales report from a partner store dashboard" },
+   541→   541→    source: { ar: "المصدر: لوحات تحكم المتاجر", en: "Source: store dashboards" },
+   542→   542→  },
+   543→   543→  testimonials: {
+   544→   544→    kicker: { ar: "آراء العملاء", en: "Client Testimonials" },
+   545→   545→    title: { ar: "ثقة عملائنا هي أكبر إنجازاتنا.", en: "Our clients' trust is our greatest achievement." },
+   546→   546→    sub: {
+   547→   547→      ar: "كل تقييم هنا شهادة حقيقية من عميل فعلي — محفوظة بنصها الأصلي كما وصلتنا.",
+   548→   548→      en: "Every review here is a real testimony from an actual client — preserved exactly as we received it.",
+   549→   549→    },
+   550→   550→    prev: { ar: "السابق", en: "Previous" },
+   551→   551→    next: { ar: "التالي", en: "Next" },
+   552→   552→  },
+   553→   553→  process: {
+   554→   554→    kicker: { ar: "منهجية العمل", en: "Our Process" },
+   555→   555→    title: { ar: "رحلة نجاح من الفكرة إلى الإطلاق", en: "A success journey from idea to launch" },
+   556→   556→    steps: [
+   557→   557→      {
+   558→   558→        n: "01",
+   559→   559→        title: { ar: "الاكتشاف والتحليل", en: "Discovery & Analysis" },
+   560→   560→        desc: { ar: "نستمع لطموحك، نحلل سوقك ومنافسيك وجمهورك، ونحدد الفرص الحقيقية للنمو.", en: "We listen to your ambition, analyze your market, competitors and audience, and identify real growth opportunities." },
+   561→   561→      },
+   562→   562→      {
+   563→   563→        n: "02",
+   564→   564→        title: { ar: "التخطيط الاستراتيجي", en: "Strategic Planning" },
+   565→   565→        desc: { ar: "نبني خطة تسويقية واضحة الأهداف والمؤشرات — قنوات، ميزانيات، وجدول زمني قابل للقياس.", en: "We build a clear plan with defined goals and KPIs — channels, budgets and a measurable timeline." },
+   566→   566→      },
+   567→   567→      {
+   568→   568→        n: "03",
+   569→   569→        title: { ar: "التنفيذ الإبداعي", en: "Creative Execution" },
+   570→   570→        desc: { ar: "يبدأ الفريق التنفيذ: الهوية، الواجهات، المحتوى والحملات — بجودة تنفيذ تفاصيلها لا تُغفل.", en: "The team executes: identity, interfaces, content and campaigns — with uncompromising attention to detail." },
+   571→   571→      },
+   572→   572→      {
+   573→   573→        n: "04",
+   574→   574→        title: { ar: "الإطلاق والمتابعة والتحسين", en: "Launch & Optimization" },
+   575→   575→        desc: { ar: "نطلق، نقيس، ونحسّن باستمرار — تقارير دورية وتحسين مستمر حتى نبلغ الهدف ونتجاوزه.", en: "We launch, measure and keep optimizing — periodic reports and continuous improvement until we hit and exceed the target." },
+   576→   576→      },
+   577→   577→    ],
+   578→   578→  },
+   579→   579→  why: {
+   580→   580→    kicker: { ar: "لماذا شُهرة؟", en: "Why SHOHRA?" },
+   581→   581→    title: { ar: "شريك نمو، لا مجرد مورّد خدمات", en: "A growth partner, not just a service vendor" },
+   582→   582→    items: [
+   583→   583→      { title: { ar: "حلول رقمية متكاملة", en: "Integrated digital solutions" }, desc: { ar: "ست خدمات تعمل معاً بتناغم واحد تحت إدارة فريق واحد.", en: "Six services working in harmony under one team's management." } },
+   584→   584→      { title: { ar: "تنفيذ متخصص", en: "Specialized execution" }, desc: { ar: "مختصون في التجارة الإلكترونية ومنصات سلة وزد.", en: "Specialists in e-commerce and the Salla & Zid platforms." } },
+   585→   585→      { title: { ar: "فهم السوق السعودي", en: "Saudi market understanding" }, desc: { ar: "من جدة إلى بقية المملكة والخليج — نعرف جمهورك ونفهم ثقافته.", en: "From Jeddah across KSA and the GCC — we know your audience and its culture." } },
+   586→   586→      { title: { ar: "تسويق مبني على البيانات", en: "Data-driven marketing" }, desc: { ar: "كل قرار إعلاني أو محتوى مبني على أرقام ومؤشرات أداء.", en: "Every ad and content decision is backed by numbers and KPIs." } },
+   587→   587→      { title: { ar: "تميّز إبداعي", en: "Creative excellence" }, desc: { ar: "هويات وتصاميم تنافس مستوى الوكالات العالمية.", en: "Identities and designs competing at international agency level." } },
+   588→   588→      { title: { ar: "شراكات طويلة الأمد", en: "Long-term partnerships" }, desc: { ar: "شركاؤنا يجددون معنا سنة بعد سنة — والدليل قائمة متاجرهم.", en: "Our partners renew year after year — their store list is the proof." } },
+   589→   589→    ],
+   590→   590→  },
+   591→   591→  cta: {
+   592→   592→    title: { ar: "هل علامتك التجارية مستعدة لمرحلة جديدة من النمو؟", en: "Is your brand ready for a new phase of growth?" },
+   593→   593→    sub: {
+   594→   594→      ar: "دعنا نتعرف على مشروعك ونكتشف معاً كيف يمكن لحلول شُهرة التسويقية أن تصنع فارقاً حقيقياً.",
+   595→   595→      en: "Let's get to know your project and discover together how SHOHRA's solutions can make a real difference.",
+   596→   596→    },
+   597→   597→    button: { ar: "احجز استشارتك المجانية الآن", en: "Book your free consultation now" },
+   598→   598→    note: { ar: "استشارة مجانية · بدون التزام · رد سريع عبر واتساب", en: "Free consultation · no commitment · fast WhatsApp reply" },
+   599→   599→  },
+   600→   600→  footer: {
+   601→   601→    desc: {
+   602→   602→      ar: "مؤسسة شُهرة التسويقية — وكالة تسويق رقمي سعودية من جدة، نبتكر حلولاً تسويقية ذكية تضمن نمو علامتك التجارية وتضاعف مبيعاتك.",
+   603→   603→      en: "SHOHRA Marketing Agency — a Saudi digital agency from Jeddah crafting smart marketing solutions that grow your brand and multiply your sales.",
+   604→   604→    },
+   605→   605→    servicesTitle: { ar: "الخدمات", en: "Services" },
+   606→   606→    workTitle: { ar: "الأعمال", en: "Work" },
+   607→   607→    contactTitle: { ar: "تواصل", en: "Contact" },
+   608→   608→    follow: { ar: "تابعنا", en: "Follow us" },
+   609→   609→    officialSite: { ar: "الموقع الرسمي", en: "Official website" },
+   610→   610→    rights: { ar: "جميع الحقوق محفوظة", en: "All rights reserved" },
+   611→   611→    builtWith: { ar: "صُنع بشغف في جدة", en: "Crafted with passion in Jeddah" },
+   612→   612→    sources: { ar: "توثيق: سجل تجاري موثق وشهادة توثيق التجارة الإلكترونية متاحة عبر لينكتري.", en: "Credentials: commercial registration & e-commerce certification available via Linktree." },
+   613→   613→  },
+   614→   614→  lang: { switch: { ar: "EN", en: "عربي" } },
+   615→   615→  lightbox: { close: { ar: "إغلاق", en: "Close" } },
+   616→   616→} as const;
+   617→   617→
+   618→   618→export type Lang = "ar" | "en";
+   619→   619→export type Bi = { ar: string; en: string };
+   620→   620→export const bi = (v: Bi, lang: Lang) => v[lang];
+   621→   621→
